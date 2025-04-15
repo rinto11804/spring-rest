@@ -25,7 +25,7 @@ public class JobController {
     }
 
     @GetMapping("/job/{jobId}")
-    public Job getJobById(@PathVariable int jobId) {
+    public JobResponseDTO getJobById(@PathVariable int jobId) {
         return jobService.getJobById(jobId);
     }
 
@@ -35,12 +35,23 @@ public class JobController {
     }
 
     @PutMapping("/job")
-    public Job updateJob(@RequestBody Job job) {
+    public JobResponseDTO updateJob(@RequestBody Job job) {
         return jobService.updateJob(job);
     }
 
     @DeleteMapping("/job/{jobId}")
-    public Job deleJob(@PathVariable int jobId) {
+    public Job deleteJob(@PathVariable int jobId) {
         return jobService.deleteJob(jobId);
+    }
+
+    @GetMapping("/job/keyword/{keyword}")
+    public List<Job> searchbyKeyword(@PathVariable("keyword") String keyword) {
+        return jobService.search(keyword);
+    }
+
+    @GetMapping("/load/jobs")
+    public String  loadSeedData() {
+        jobService.loadData();
+        return "success";
     }
 }
