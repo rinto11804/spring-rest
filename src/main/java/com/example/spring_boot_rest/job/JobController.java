@@ -42,7 +42,7 @@ public class JobController {
 
     @DeleteMapping("/job/{jobId}")
     public void deleteJob(@PathVariable int jobId) {
-         jobService.deleteJob(jobId);
+        jobService.deleteJob(jobId);
     }
 
     @GetMapping("/jobs/keyword/{keyword}")
