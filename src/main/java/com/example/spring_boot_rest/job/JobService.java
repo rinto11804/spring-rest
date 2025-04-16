@@ -42,10 +42,8 @@ public class JobService {
           return res;
      }
 
-     public Job deleteJob(int id) {
-          Job job = jobRepository.getReferenceById(id);
-          jobRepository.delete(job);
-          return job;
+     public void deleteJob(int id) {
+          jobRepository.deleteById(id);
      }
 
      public List<Job> search(String keyword) {

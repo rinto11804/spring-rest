@@ -3,6 +3,7 @@ package com.example.spring_boot_rest.job;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,8 @@ public class JobController {
     }
 
     @GetMapping("/job/{jobId}")
-    public JobResponseDTO getJobById(@PathVariable int jobId) {
-        return jobService.getJobById(jobId);
+    public ResponseEntity<JobResponseDTO> getJobById(@PathVariable int jobId) {
+        return ResponseEntity.ok(jobService.getJobById(jobId));
     }
 
     @PostMapping("/job")
@@ -40,11 +41,11 @@ public class JobController {
     }
 
     @DeleteMapping("/job/{jobId}")
-    public Job deleteJob(@PathVariable int jobId) {
-        return jobService.deleteJob(jobId);
+    public void deleteJob(@PathVariable int jobId) {
+         jobService.deleteJob(jobId);
     }
 
-    @GetMapping("/job/keyword/{keyword}")
+    @GetMapping("/jobs/keyword/{keyword}")
     public List<Job> searchbyKeyword(@PathVariable("keyword") String keyword) {
         return jobService.search(keyword);
     }
